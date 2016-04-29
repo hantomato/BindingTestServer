@@ -11,7 +11,16 @@ import android.widget.Button;
 /**
  * service를 사용한 바인딩 테스트.
  *
- * case 1. local application 이 동일한 process 내에서 서비스를 사용.
+ * case 1. 다른 앱에서 이 앱의 서비스 실행
+ *      -> BindingTestClient 앱이 이 앱의 MyIntentService 호출함
+ *
+ * case 2. 같은 앱 내에서 Bind 사용해서 서비스와 통신
+ *      -> MyLocalService
+ *
+ * case 3. Messenger 사용.
+ *      -> ActivityMessenger, MessengerService
+ *      -> http://android-kr.tistory.com/283#Messenger
+ *
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -26,12 +35,24 @@ public class MainActivity extends AppCompatActivity {
                 aaa();
             }
         });
+        ((Button)findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BindingActivity.class));
+            }
+        });
+        ((Button)findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ActivityMessenger.class));
+            }
+        });
     }
 
     public void aaa() {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.nmj.bind.bindingtestserver",
-                "com.nmj.bind.bindingtestserver.MyIntentService"));
+                "com.nmj.bind.bindingtestserver.service.MyIntentService"));
         ComponentName res = startService(intent);
         Log.i("nmj7", "res : " + res);
     }

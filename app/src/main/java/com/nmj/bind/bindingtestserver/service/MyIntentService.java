@@ -1,4 +1,4 @@
-package com.nmj.bind.bindingtestserver;
+package com.nmj.bind.bindingtestserver.service;
 
 import android.app.IntentService;
 import android.content.Intent;
