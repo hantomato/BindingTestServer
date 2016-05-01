@@ -2,6 +2,8 @@ package com.nmj.bind.bindingtestserver;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ActivityMessenger.class));
             }
         });
+        ((Button)findViewById(R.id.button4)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent i = new Intent(MainActivity.this);
+//                i.setAction("com.nmj.bind.bindingtestserver.service.MyIntentService");
+//                i.setPackage("com.nmj.bind.bindingtestserver");
+////                i.setPackage("com.nmj.bind.bindingtestserver");
+////                i.setPackage("com.nmj.bind.bindingtestserver");
+////                boolean bb = bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+//
+//                // 성공
+//                // Intent i = new Intent(MainActivity.this, CountService.class);
+//                boolean bb = getApplicationContext().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+//                Log.i("nmj7", "bindService ret : " + bb);
+
+            }
+        });
+        ((Button)findViewById(R.id.button5)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void aaa() {
@@ -56,4 +81,26 @@ public class MainActivity extends AppCompatActivity {
         ComponentName res = startService(intent);
         Log.i("nmj7", "res : " + res);
     }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            Log.i("nmj7", "mConnection.onServiceConnected");
+            // This is called when the connection with the service has been
+            // established, giving us the object we can use to
+            // interact with the service.  We are communicating with the
+            // service using a Messenger, so here we get a client-side
+            // representation of that from the raw IBinder object.
+//            mService = new Messenger(service);
+//            IRemoteService.Stub.asInterface(service);
+
+//            mBinder = ICountService.Stub.asInterface(service);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            Log.i("nmj7", "mConnection.onServiceDisconnected");
+            // This is called when the connection with the service has been
+            // unexpectedly disconnected -- that is, its process crashed.
+//            mService = null;
+        }
+    };
 }

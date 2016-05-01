@@ -30,9 +30,9 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name="com.nmj.bind.bindingtestserver.service.CountService"
+            android:name=".service.NmgGameService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
     </application>
 
 </manifest>
