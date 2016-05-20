@@ -29,10 +29,6 @@
             android:name=".service.MessengerService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name=".service.CountService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity
             android:name=".LoginActivity"
